@@ -20,26 +20,31 @@ namespace QuizApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //var results = LoadResults();
-            //Form3 form3 = new Form3(results);
-            //form3.Show();
-            //this.Hide();
+            var results = LoadResults();
+            Form3 form3 = new Form3(results);
+            form3.Show();
+            this.Hide();
         }
 
-        //private List<QuizResult> LoadResults()
-        //{
-        //    string filePath = Path.Combine(Application.StartupPath, "results.json");
-        //    if (!File.Exists(filePath)) return new List<QuizResult>();
+        private List<QuizResult> LoadResults()
+        {
+            string filePath = Path.Combine(Application.StartupPath, "results.json");
+            if (!File.Exists(filePath)) return new List<QuizResult>();
 
-        //    try
-        //    {
-        //        string json = File.ReadAllText(filePath);
-        //        return JsonSerializer.Deserialize<List<QuizResult>>(json) ?? new List<QuizResult>();
-        //    }
-        //    catch
-        //    {
-        //        return new List<QuizResult>();
-        //    }
-        //}
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<List<QuizResult>>(json) ?? new List<QuizResult>();
+            }
+            catch
+            {
+                return new List<QuizResult>();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
