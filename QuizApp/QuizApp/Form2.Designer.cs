@@ -167,6 +167,7 @@
             button2.TabIndex = 19;
             button2.Text = "ᐅ";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // progressBar1
             // 
@@ -190,6 +191,7 @@
             Controls.Add(label1);
             Name = "Form2";
             Text = "Тестування";
+            Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
