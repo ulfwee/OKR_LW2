@@ -56,7 +56,7 @@ namespace QuizApp
 
                     if (questions.Count > 0)
                     {
-                        //SetProgressBarMax();
+                       SetProgressBarMax();
                         DisplayQuestion();
 
                         radioButton1.CheckedChanged += RadioButton_CheckedChanged;
@@ -124,7 +124,7 @@ namespace QuizApp
 
             button3.Enabled = currentIndex > 0;
             UpdateNextButton();
-            // UpdateProgressBar();
+            UpdateProgressBar();
         }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -278,6 +278,36 @@ namespace QuizApp
                     new Point(rect.X + 10, rect.Y - (textSize.Height / 2)),
                     box.ForeColor);
             }
+        }
+
+        private void SetProgressBarMax()
+        {
+            if (questions.Count == 0)
+            {
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = 100;
+                progressBar1.Value = 0;
+                return;
+            }
+
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 100;
+            progressBar1.Step = (int)Math.Ceiling(100.0 / questions.Count);
+        }
+
+        private void UpdateProgressBar()
+        {
+            if (questions.Count == 0)
+            {
+                progressBar1.Value = 0;
+                return;
+            }
+
+            int percentage = (int)Math.Round((currentIndex + 1) * 100.0 / questions.Count);
+            if (percentage > 100) percentage = 100;
+            if (percentage < 0) percentage = 0;
+
+            progressBar1.Value = percentage;
         }
     }
 }

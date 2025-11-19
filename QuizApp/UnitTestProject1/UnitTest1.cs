@@ -26,6 +26,31 @@ namespace UnitTestProject1
                 return (List<Quiz>)field.GetValue(this);
             }
         }
+
+        public void InvokeSetProgressBarMax()
+        {
+            var method = typeof(Form2).GetMethod("SetProgressBarMax",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            method.Invoke(this, null);
+        }
+
+        public int ProgressValue
+        {
+            get
+            {
+                var field = typeof(Form2).GetField("progressBar1",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var pb = (ProgressBar)field.GetValue(this);
+                return pb.Value;
+            }
+            set
+            {
+                var field = typeof(Form2).GetField("progressBar1",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var pb = (ProgressBar)field.GetValue(this);
+                pb.Value = value;
+            }
+        }
     }
 
     public class TestableForm3 : Form3
@@ -190,6 +215,17 @@ namespace UnitTestProject1
             Assert.True(form.Grid.ReadOnly);
         }
 
+        [Fact]
+        public void SetProgressBarMax_NoQuestions_ProgressIsZero()
+        {
+            // Arrange
+            var form = new TestableForm2();
 
+            // Act
+            form.InvokeSetProgressBarMax(); // you can create this wrapper if needed
+
+            // Assert
+            Assert.Equal(0, form.ProgressValue);
+        }
     }
 }
