@@ -16,5 +16,12 @@ namespace QuizApp
         {
             InitializeComponent();
         }
+
+        protected virtual void Quit() => Application.Exit();
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Quit();
+        }
     }
 }
