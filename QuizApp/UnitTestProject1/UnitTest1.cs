@@ -18,5 +18,17 @@ namespace UnitTestProject1
             Assert.Null(exception);
         }
 
+        [Fact]
+        public void Form2_Should_Open_Without_Exception()
+        {
+            var exception = Record.Exception(() =>
+            {
+                var form = new Form2();
+                form.Dispose();
+            });
+
+            Assert.Null(exception);
+        }
+
     }
 }
