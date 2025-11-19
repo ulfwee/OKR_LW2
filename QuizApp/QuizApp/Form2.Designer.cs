@@ -68,6 +68,7 @@
             groupBox1.Size = new Size(497, 180);
             groupBox1.TabIndex = 15;
             groupBox1.TabStop = false;
+            groupBox1.Paint += groupBox1_Paint;
             // 
             // radioButton1
             // 
@@ -130,6 +131,7 @@
             pictureBox2.Size = new Size(43, 34);
             pictureBox2.TabIndex = 16;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // button3
             // 
@@ -142,6 +144,7 @@
             button3.TabIndex = 17;
             button3.Text = "ᐊ";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button1
             // 
@@ -192,6 +195,7 @@
             Name = "Form2";
             Text = "Тестування";
             Load += Form2_Load;
+            Paint += Form2_Paint;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
