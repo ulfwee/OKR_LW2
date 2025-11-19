@@ -1,0 +1,29 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# NuGet
+*.nupkg
+project.nuget.cache
+
+# Copilot AI Indexes
+CopilotIndices/
+
+# Cache
+*.cache
+*.db
+*.v2
+
+# Generated
+*.csproj.nuget.dgspec.json
+*.AssemblyInfo.*
+*.cache
