@@ -154,6 +154,7 @@
             button1.TabIndex = 18;
             button1.Text = "Вийти";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 

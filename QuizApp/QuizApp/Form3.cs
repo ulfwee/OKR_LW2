@@ -12,9 +12,16 @@ namespace QuizApp
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        public Form3(List<QuizResult> results)
         {
             InitializeComponent();
+            //LoadResults(results);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            new Form1().Show();
+            this.Hide();
         }
     }
 }
