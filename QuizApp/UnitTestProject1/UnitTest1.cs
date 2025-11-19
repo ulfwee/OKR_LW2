@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Threading;
+using System.Windows.Forms;
 using QuizApp;
 using Xunit;
 
@@ -9,13 +10,11 @@ namespace UnitTestProject1
     {
         public List<Quiz> Questions => baseQuestions;
 
-        // Expose protected LoadQuestions for testing
         public void InvokeLoadQuestions(string path)
         {
             LoadQuestions(path);
         }
 
-        // Access private 'questions' field via reflection
         private List<Quiz> baseQuestions
         {
             get
@@ -28,6 +27,20 @@ namespace UnitTestProject1
             }
         }
     }
+
+    public class TestableForm3 : Form3
+    {
+        public TestableForm3() : base(new List<QuizResult>()) { }
+
+        public void InvokeLoadResults(List<QuizResult> results)
+        {
+            LoadResults(results);
+        }
+
+        public DataGridView Grid => ResultsGrid;
+    }
+
+
 
     public class UnitTest1
     {
@@ -128,6 +141,55 @@ namespace UnitTestProject1
 
             Assert.Empty(form.Questions);
         }
+
+        [Fact]
+        public void LoadResults_ShouldFillDataGrid_WithCorrectRows()
+        {
+            // Arrange
+            var results = new List<QuizResult>
+    {
+        new QuizResult { Date = "2025-01-01", CorrectAnswers = 4, TotalQuestions = 5 },
+        new QuizResult { Date = "2025-01-02", CorrectAnswers = 3, TotalQuestions = 5 }
+    };
+
+            var form = new TestableForm3();
+
+            // Act
+            form.InvokeLoadResults(results);
+
+            // Assert
+            Assert.Equal(2, form.Grid.Rows.Count);  // two results loaded
+
+            Assert.Equal("2025-01-01", form.Grid.Rows[0].Cells[0].Value);
+            Assert.Equal(4, form.Grid.Rows[0].Cells[1].Value);
+            Assert.Equal(5, form.Grid.Rows[0].Cells[2].Value);
+
+            Assert.Equal("2025-01-02", form.Grid.Rows[1].Cells[0].Value);
+        }
+
+        [Fact]
+        public void LoadResults_ShouldCreateCorrectColumns()
+        {
+            var form = new TestableForm3();
+
+            form.InvokeLoadResults(new List<QuizResult>());
+
+            Assert.Equal(3, form.Grid.Columns.Count);
+            Assert.Equal("Date & Time", form.Grid.Columns[0].HeaderText);
+            Assert.Equal("Correct", form.Grid.Columns[1].HeaderText);
+            Assert.Equal("Total", form.Grid.Columns[2].HeaderText);
+        }
+
+        [Fact]
+        public void LoadResults_ShouldSetGridToReadOnly()
+        {
+            var form = new TestableForm3();
+
+            form.InvokeLoadResults(new List<QuizResult>());
+
+            Assert.True(form.Grid.ReadOnly);
+        }
+
 
     }
 }
