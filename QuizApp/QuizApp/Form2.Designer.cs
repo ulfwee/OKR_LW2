@@ -188,7 +188,7 @@
             Controls.Add(groupBox1);
             Controls.Add(label1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Тестування";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
