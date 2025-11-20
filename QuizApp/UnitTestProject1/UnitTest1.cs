@@ -222,7 +222,7 @@ namespace UnitTestProject1
             var form = new TestableForm2();
 
             // Act
-            form.InvokeSetProgressBarMax(); // you can create this wrapper if needed
+            form.InvokeSetProgressBarMax(); 
 
             // Assert
             Assert.Equal(0, form.ProgressValue);
