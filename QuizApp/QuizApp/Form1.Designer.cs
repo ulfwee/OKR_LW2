@@ -79,6 +79,7 @@
             button3.TabIndex = 7;
             button3.Text = "Вийти";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click_1;
             // 
             // Form1
             // 
